@@ -1,0 +1,37 @@
+-- migrate:up
+CREATE TABLE products (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(256) NOT NULL,
+  hpp_amount INTEGER NOT NULL,
+  selling_amount INTEGER NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ DEFAULT NULL,
+  deleted_at TIMESTAMPTZ DEFAULT NULL
+);
+
+CREATE TABLE cashflow (
+  id SERIAL PRIMARY KEY,
+  note VARCHAR(256) NOT NULL,
+  nominal INTEGER NOT NULL,
+  type VARCHAR(10) NOT NULL,
+  recap_type VARCHAR(10) NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ DEFAULT NULL,
+  deleted_at TIMESTAMPTZ DEFAULT NULL
+);
+
+CREATE TABLE transactions (
+  id SERIAL PRIMARY KEY,
+  product_id INTEGER NOT NULL REFERENCES products(id),
+  hpp_amount INTEGER NOT NULL,
+  selling_amount INTEGER NOT NULL,
+  qty INTEGER NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMPTZ DEFAULT NULL,
+  deleted_at TIMESTAMPTZ DEFAULT NULL
+);
+
+-- migrate:down
+DROP TABLE IF EXISTS transactions;
+DROP TABLE IF EXISTS cashflow;
+DROP TABLE IF EXISTS products;
