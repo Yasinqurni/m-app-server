@@ -1,7 +1,7 @@
 use axum::Router;
 
-use crate::module::product::v1::handler::product_handler;
+use crate::module::cashflow::v1::handler::cashflow_handler;
 
-pub fn  configure() -> Router {
-	Router::new().nest("/api/v1/product", product_handler::routes())
+pub fn configure() -> Router {
+	Router::new().nest("/api/v1/cashflow", cashflow_handler::routes())
 }

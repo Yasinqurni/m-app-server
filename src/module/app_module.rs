@@ -16,6 +16,7 @@ use crate::pkg::config::Config;
 use crate::pkg::health;
 
 use super::product::product_module;
+use super::cashflow::cashflow_module;
 
 pub async fn configure(config: Arc<Config>, di_module: Arc<AppModule>) -> Router {
     // Setup CORS layer
@@ -28,6 +29,7 @@ pub async fn configure(config: Arc<Config>, di_module: Arc<AppModule>) -> Router
     Router::new()
         .route("/health", get(health::health_check))
         .merge(product_module::configure())
+        .merge(cashflow_module::configure())
         .layer(TraceLayer::new_for_http())
         .layer(cors)
         .layer(CookieManagerLayer::new())
