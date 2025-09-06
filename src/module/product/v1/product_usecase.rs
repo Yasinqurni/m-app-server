@@ -12,7 +12,7 @@ use crate::module::product::v1::entity::{
     },
     model::product::ActiveModel,
 };
-use crate::module::product::v1::repository::product_repository::ProductRepository;
+use crate::module::repository::product_repository::ProductRepository;
 use crate::pkg::custom_error::AppError;
 use sea_orm::{prelude::*, Set};
 use std::sync::Arc;

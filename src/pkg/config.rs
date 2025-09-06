@@ -17,6 +17,7 @@ pub struct DbConfig {
     pub password: String,
     pub port: u16,
     pub driver: String,
+    pub ssl_mode: String
 }
 
 #[derive(Debug, Clone)]
@@ -54,6 +55,7 @@ pub fn init_config() -> Arc<Config> {
                         .parse()
                         .unwrap_or(5432),
                     driver: env::var("DB_DRIVER").unwrap_or_else(|_| "postgres".to_string()),
+                    ssl_mode: env::var("DB_SSL_MODE").unwrap_or_else(|_| "disable".to_string()),
                 },
                 jwt: Jwt {
                     secret: env::var("JWT_SECRET").unwrap_or_else(|_| "secret".to_string()),

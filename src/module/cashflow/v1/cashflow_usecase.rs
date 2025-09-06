@@ -12,7 +12,7 @@ use crate::module::cashflow::v1::entity::{
     },
     model::cashflow::ActiveModel,
 };
-use crate::module::cashflow::v1::repository::cashflow_repository::CashflowRepository;
+use crate::module::repository::cashflow_repository::CashflowRepository;
 use crate::pkg::custom_error::AppError;
 use sea_orm::{prelude::*, Set};
 use std::sync::Arc;

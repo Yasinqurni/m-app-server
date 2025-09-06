@@ -16,13 +16,16 @@ impl DBConnection {
         );
 
         let db_url = format!(
-            "postgres://{}:{}@{}:{}/{}",
+            "postgres://{}:{}@{}:{}/{}?sslmode={}",
             config.db.user,
             config.db.password,
             config.db.host,
             config.db.port,
-            config.db.name
+            config.db.name,
+            config.db.ssl_mode
         );
+
+        println!("{:?}", db_url.clone());
 
         let mut sea_opts = SeaOrmConnectOptions::new(&db_url);
         sea_opts
