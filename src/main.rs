@@ -33,7 +33,7 @@ async fn main() {
     app = app.layer(TraceLayer::new_for_http());
 
     // Define address to bind the server
-    let addr = SocketAddr::from(([127, 0, 0, 1], config.app.port));
+    let addr = SocketAddr::from(([0, 0, 0, 0], config.app.port));
     println!("🚀 Server is running on: http://{}", addr);
 
     // Start the Axum server
